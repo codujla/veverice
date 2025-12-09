@@ -5,15 +5,16 @@ from classes.tca9548 import TCA9548A
 from classes.as5600 import AS5600
 from classes.robot import Robot
 
-# i2c = I2C(0, scl=Pin(1), sda=Pin(0))
+i2c = I2C(0, scl=Pin(1), sda=Pin(0))
 
-# mux = TCA9548A(i2c)
-# mux.select(0)
-# enc1 = AS5600(i2c)
+mux = TCA9548A(i2c)
+mux.select(0)
+
+enc1 = AS5600(i2c)
 
 
-left = Motor(in1=2, in2=3, pwm_pin=4)
-right = Motor(in1=5, in2=6, pwm_pin=7)
+left = Motor(in1=10, in2=11, pwm_pin=9)
+right = Motor(in1=15, in2=14, pwm_pin=12)
 
 robot = Robot(left, right)
 
@@ -41,12 +42,16 @@ def test():
 
     _test = 0 
 
-while True:
-    if _test:
-        test()
-    time.sleep(1)
+print("start")
 
+try:
+    while True:
+        if _test:
+            test()
+        time.sleep(1)
 
-    # mux.select(0)
-    # a1 = enc1.angle()
-    # print("Left:", a1, "Right:", a2)
+        # mux.select(0)
+        # a1 = enc1.angle()
+        # print(a1)
+except KeyboardInterrupt:
+    print("stop")

@@ -1,4 +1,4 @@
-#encoder WIP
+#encoder AS5600
 
 class AS5600:
     def __init__(self, i2c):
